@@ -1,30 +1,33 @@
 ---
 title: 'Dummy out Categorical Variables in Stata'
 date: 2022-10-09
-permalink: /posts/2022/09/dummyout/
+permalink: /posts/2022/10/dummyout/
 tags:
   - Stata
-  - Resources
   - Tables
+  - Resources
 ---
 
 Summary Statistics for Categorical Variables in Stata
 ------
-It is somewhat painful to produce a table of summary statistics for categorical variables in Stata. The issue is that the popular user-written package [estout/esttab](http://repec.sowi.unibe.ch/stata/estout/) does not accept factor notations for summary statistics. In other words, you won't get neat tables by simply typing the following in Stata:
+It is somewhat painful to produce a table of summary statistics for categorical variables in Stata. The issue is that the popular user-written package [estout/esttab](http://repec.sowi.unibe.ch/stata/estout/) does not accept factor notations for summary statistics. In other words, you won't get a neat table by simply typing the following in Stata:
+
 
 	.	eststo: estpost sum i.x
-	
+
+
 An obvious solution is to create dummy variables in the first place before you summarize them. Stata's system command can help you do this:
 
 	.	tab x, gen(x_)
-	
+
+
 However, such a approach is cumbersome when you have multiple categorical variables, since you probably need to write a loop:
 
 	.	foreach var of varlist x y z {
 	.		tab(`var'), gen(`var'_)
 	.	}
 	
-Moreover, the generated dummy variables do not have neat tables that you can use later to tabulate your summary statistics. For example,
+Moreover, the generated dummy variables do not have nice labels that you can use later. If you want a descriptive table with approproaite variable names, this means that you need to modify the labels for all the dummy variables or use esttab's "collabel()" option. In my mind, both are quite troublesome.
 
 	.	sysuse auto, clear
 	.	tab(foreign), gen(foreign_)
@@ -36,8 +39,12 @@ Moreover, the generated dummy variables do not have neat tables that you can use
 	---------------------------------------------------------------------------
 	foreign_1       byte    %8.0g                 foreign==Domestic
 	foreign_2       byte    %8.0g                 foreign==Foreign
+	
+This label problem is also the reason why the following command does not work ideally:
 
-These minor issues motivate me to write a simple program "dummyout" to avoid all the inconvenience, which I will introduce in the next section.
+	.	eststo: xi: estpost sum i.x i.y
+
+In short, these minor issues motivate me to write a simple program "dummyout" to avoid all the inconvenience, which I will introduce in the next section.
 
 The "dummyout" Command
 ------
@@ -45,9 +52,9 @@ The "dummyout" command improves Stata's "tab(), gen()" in the following ways:
 * dummyout accepts multiple variables and does not require a loop
 * dummyout uses actual values to label generated dummies, instead of using the sequence in which dummies are generated
 
-You are ready to go with once you download and put the ado file in your Stata's personal ado-file path.
+The ado file for "dummyout" can be downloaded [here](https://github.com/Jianxuan-Lei/stata-dummyout). You are ready to go once you put it in your Stata's personal ado-file path.
 
-	. 	dummyout x y z
+	dummyout x y z
 
 
 An Example
