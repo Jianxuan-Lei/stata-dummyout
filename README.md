@@ -1,7 +1,7 @@
 ---
 title: 'Dummy out Categorical Variables in Stata'
-date: 2022-10-19
-permalink: /posts/2022/19/dummyout/
+date: 2022-10-09
+permalink: /posts/2022/09/dummyout/
 tags:
   - Stata
   - Resources
