@@ -27,7 +27,7 @@ However, such a approach is cumbersome when you have multiple categorical variab
 	.		tab(`var'), gen(`var'_)
 	.	}
 	
-Moreover, the generated dummy variables do not have nice labels that you can use later. If you want a descriptive table with approproaite variable names, you need to modify the labels for all the dummy variables or use esttab's "collabel()" option. In my mind, both are quite troublesome.
+Moreover, the generated dummy variables do not have nice labels that you can use later. If you want a descriptive table with approproaite variable names, you need to modify the labels for all the dummy variables or use esttab's "varlabel()" option. In my mind, both are quite troublesome.
 
 	.	sysuse auto, clear
 	.	tab(foreign), gen(foreign_)
