@@ -138,8 +138,8 @@ The following example illustrates these points using a dataset from CPS ASEC 202
 
 	. 
 	.	  foreach var of varlist firmsize race {
-		  2.         qui tab(`var'), gen(`var'_)
-		  3. }
+	.         	qui tab(`var'), gen(`var'_)
+	.	  }
 
 	. 
 	. 	d firmsize_1 firmsize_2 firmsize_3 firmsize_4 firmsize_5 firmsize_6 race_1 race_2 race_3 race_4
