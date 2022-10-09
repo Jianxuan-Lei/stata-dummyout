@@ -8,15 +8,15 @@ tags:
   - Resources
 ---
 
-Summary Statistics for Categorical Variables in Stata
+Summary statistics for categorical variables in Stata
 ------
-It is somewhat painful to produce a table of summary statistics for categorical variables in Stata. The issue is that the popular user-written package [estout/esttab](http://repec.sowi.unibe.ch/stata/estout/) does not accept factor notations for summary statistics. In other words, you won't get a neat table by simply typing the following in Stata:
+It is somewhat painful to produce a table to summarize categorical variables in Stata. The issue is that the popular user-written package [estout/esttab](http://repec.sowi.unibe.ch/stata/estout/) does not accept factor notations for summary statistics. In other words, you won't get a neat table by simply typing the following in Stata:
 
 
 	.	eststo: estpost sum i.x
 
 
-An obvious solution is to create dummy variables in the first place before you summarize them. Stata's system command can help you do this:
+An obvious solution is to create dummy variables before you summarize them. Stata's system command can help you do this:
 
 	.	tab x, gen(x_)
 
@@ -40,24 +40,24 @@ Moreover, the generated dummy variables do not have nice labels that you can use
 	foreign_1       byte    %8.0g                 foreign==Domestic
 	foreign_2       byte    %8.0g                 foreign==Foreign
 	
-This label problem is also the reason why the following command does not work ideally:
+This label problem is also the reason why the command below does not work ideally:
 
 	.	eststo: xi: estpost sum i.x i.y
 
-In short, these minor issues motivate me to write a simple program "dummyout" to avoid all the inconvenience, which I will introduce in the next section.
+In short, these minor but annoying issues motivate me to write a simple program "dummyout" to avoid inconvenience, which I will introduce in the next section.
 
-The "dummyout" Command
+The "dummyout" command
 ------
 The "dummyout" command improves Stata's "tab(), gen()" in the following ways:
-* dummyout accepts multiple variables and does not require a loop
-* dummyout uses actual values to label generated dummies, instead of using the sequence in which dummies are generated
+* It accepts multiple variables and does not require a loop
+* It uses actual values to label generated dummies, instead of using the sequence in which dummies are generated
 
-The ado file for "dummyout" can be downloaded [here](https://github.com/Jianxuan-Lei/stata-dummyout). You are ready to go once you put it in your Stata's personal ado-file path (type adopath in Stata to find out your path).
+The ado file for "dummyout" can be downloaded [here](https://github.com/Jianxuan-Lei/stata-dummyout). You are ready to go once you put it in your Stata's personal ado-file path (type adopath in Stata to see your path).
 
 	.	dummyout x y z
 
 
-An Example
+An example
 ------
 The following example illustrates these points using a dataset from CPS ASEC 2021.
 
