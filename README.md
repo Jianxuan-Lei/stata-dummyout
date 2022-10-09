@@ -40,11 +40,11 @@ Moreover, the generated dummy variables do not have nice labels that you can use
 	foreign_1       byte    %8.0g                 foreign==Domestic
 	foreign_2       byte    %8.0g                 foreign==Foreign
 	
-This label problem is also the reason why the command below does not work ideally:
+This label problem is also why the command below does not work ideally:
 
 	.	eststo: xi: estpost sum i.x i.y
 
-In short, these minor but annoying issues motivate me to write a simple program "dummyout" to avoid inconvenience, which I will introduce in the next section.
+In short, various minor but annoying issues motivate me to write a simple program "dummyout" to avoid inconvenience, which I will introduce in the next section.
 
 The "dummyout" command
 ------
