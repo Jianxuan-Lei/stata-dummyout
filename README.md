@@ -116,7 +116,7 @@ The following example illustrates these points using a dataset from CPS ASEC 202
 	dummy variable(s) created for: firmsize
 	dummy variable(s) created for: race
 
-	. d firmsize_1 firmsize_2 firmsize_5 firmsize_7 firmsize_8 firmsize_9 race_1 race_2 race_3 race_4
+	. d firmsize_* race_*
 
 		      storage   display    value
 	variable name   type    format     label      variable label
