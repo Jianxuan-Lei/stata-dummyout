@@ -80,7 +80,7 @@ The following example illustrates these points using a dataset from CPS ASEC 202
 	. 	* add numbers to the value labels & tabulate
 	. 	numlabel firmsize_lbl newrace, add
 
-	. tab1     firmsize race
+	. 	tab1     firmsize race
 
 	-> tabulation of firmsize  
 
@@ -142,7 +142,7 @@ The following example illustrates these points using a dataset from CPS ASEC 202
 	.	  }
 
 	. 
-	. 	d firmsize_1 firmsize_2 firmsize_3 firmsize_4 firmsize_5 firmsize_6 race_1 race_2 race_3 race_4
+	. 	d firmsize_* race_*
 
 		      storage   display    value
 	variable name   type    format     label      variable label
